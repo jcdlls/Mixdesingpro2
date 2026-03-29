@@ -1,22 +1,16 @@
-import { Outlet } from '@tanstack/react-router'
+import { ReactNode } from 'react'
 
-export default function RootLayout() {
+interface CardProps {
+  children: ReactNode
+  className?: string
+  title?: string
+}
+
+export function Card({ children, className = '', title }: CardProps) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 to-slate-800">
-      <nav className="bg-slate-800 border-b border-slate-700 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-2">
-              <div className="text-2xl font-bold text-blue-400">Mixdesign</div>
-              <div className="text-2xl font-bold text-purple-400">Pro 2</div>
-            </div>
-          </div>
-        </div>
-      </nav>
-      
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Outlet />
-      </main>
+    <div className={`bg-slate-700 rounded-lg p-4 shadow-md ${className}`}>
+      {title && <h3 className="text-lg font-semibold text-white mb-2">{title}</h3>}
+      {children}
     </div>
   )
 }
